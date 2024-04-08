@@ -1,0 +1,21 @@
+[build-system]
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "yum"
+version = "0.0.1"
+dependencies = [
+  "survey",
+]
+readme = "README.md"
+keywords = ["cli", "utility", "menu"]
+license = {file = "LICENSE"}
+authors = [
+  {name = "Yuri Klar", email = "juri.klar@outlook.com"},
+]
+
+[project.urls]
+Repository = "https://github.com/yurimimi/yum.git"
+Issues = "https://github.com/yurimimi/yum/issues"
+
