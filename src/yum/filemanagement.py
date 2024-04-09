@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 from skimage.io import imread, imsave
 
-from .imageedit.imageops import crop_image
+from .imageops import crop_image, expand_image
 
 
 logger = logging.getLogger(__name__)
@@ -87,6 +87,10 @@ class File():
 
         return file_extension
 
+    def get_parent_file_name(self) -> str:
+
+        return os.path.dirname(self.abspath)
+
     def rename(self, new_name: str, force_rewrite: bool=False) -> RenameResult:
         """Rename file"""
 
@@ -136,23 +140,20 @@ class File():
 
         return self.rename(new_filename, force_rewrite)
 
-    @staticmethod
-    def __update_filename_with_version_num(filename, num=0):
+    def update_filename_with_version_num(self, new_name, v_num=0):
         """Updates the filename with a version number if necessary,
         without adding anything if no versioning is needed
-
-        - [ ] It doesn't work. Fix this, please 
         """
 
-        if os.path.isfile(filename):
-            name, extension = os.path.splitext(filename)
+        # If file with the name already exists increment version number
+        if os.path.isfile(os.path.join(self.get_parent_file_name(), new_name)):
+            v_num += 1
+            name = self.get_base_name() + "_" + str(v_num) + self.get_extension()
+            logger.debug("Updated name %s", name)
+            return self.update_filename_with_version_num(
+                    os.path.join(self.get_parent_file_name(), name), v_num)
 
-            num += 1
-            name += "_v" + str(num)
-            logger.debug(name+extension)
-            return File.__update_filename_with_version_num(name+extension, num)
-
-        return filename
+        return new_name
 
     def __repr__(self) -> str:
         return f"Filename {self.abspath}"
@@ -171,21 +172,30 @@ class ImageFile(File):
 
         self.image = crop_image(self.image, args)
 
-    def save(self, output_image, output_filename=None) -> None:
+    def expand(self, args) -> None:
+        """Expand image"""
+
+        self.image = expand_image(self.image, args)
+
+    def save(self, output_filename=None) -> str | Exception:
         """Saves file with filename specified"""
 
         # Set filename
-        if output_filename is not None:
-            output_filename = output_filename + self.get_extension()
-        else:
-            output_filename = self.get_name() + "_cropped" + self.get_extension()
+        if output_filename is None:
+            output_filename = self.get_name()
 
         # If file already exists update filename
-        output_filename = File.__update_filename_with_version_num(output_filename)
-        logger.debug(output_filename)
+        self.abspath = os.path.join(self.get_parent_file_name(),
+                                    self.update_filename_with_version_num(output_filename))
+        logger.debug("Saved as %s", self.abspath)
 
-        imsave(output_filename, output_image)
-        print("[v] Saved as", output_filename)
+        try:
+            imsave(self.abspath, self.image)
+        except Exception as e:
+            logger.error(e)
+            return e
+
+        return self.get_name()
 
 
 class Directory(File):

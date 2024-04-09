@@ -1,8 +1,8 @@
-"""Display brightness level manager manipulating xrandr."""
+"""Screen brightness level manager, manipulating xrandr."""
 import logging
 from typing import TypeVar
 
-from ..ui import proceed, notify # I have to decouple this
+from ..ui import proceed, notify
 from ..xrandr import br
 
 
@@ -58,12 +58,12 @@ def set_brightness(brt_level: int | str=None) -> None:
         except ValueError as e:
             print(e, "Please set a value in range from 0 to 100.")
 
-    # Check if arg is in range between 0 and 100
+    # Check if arg is into range between 0 and 100
     if brt_level in range(101):
         # Translate in range of 0 to 1
         brt_level /= 100
 
-        # If arg was provided with a sign
+        # If value was provided with a sign
         if brt_is_rel:
 
             # Calculate what brightness level we get here after application of the rel value
@@ -73,12 +73,12 @@ def set_brightness(brt_level: int | str=None) -> None:
             # Calc. Here's the 0.8 - 0.1 = 0.7000000000000001 kind of problem so I do `round`
             val = round(curr_brt + rel_sign * brt_level, 2)
 
-            # Restrict it to 0-1
+            # Filter it into 0-1
             brt_level = _pass_filter(val, 0, 1)
             logger.debug("Brightness level to set after calc: %s", brt_level)
 
         # Notify user that the brightness to set is a very low value
-        # Ask user if they want it
+        # Ask the user if they want to anyway
         if brt_level <= .05 and not proceed("You're trying to set value of <5"):
             # Exit
             return

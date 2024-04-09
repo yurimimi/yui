@@ -1,5 +1,4 @@
 """A CLI tool that catalogues all my python scripts and utilities"""
-
 import sys
 import os
 import logging
@@ -11,7 +10,7 @@ from .ui import notify, ask_select, ask_input
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename="main.log", encoding="utf-8",
                     level=logging.DEBUG,
-                    format='%(asctime)s:%(levelname)s:%(name)s:%(message)s',
+                    format='%(asctime)s:%(levelname)s:%(name)s:%(lineno)d:%(message)s',
                     datefmt='%Y-%m-%d %I:%M:%S %p')
 
 

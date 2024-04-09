@@ -1,39 +1,39 @@
-"""Crop an image."""
+"""Expand image with transparent background (for now only transparent)."""
 import logging
 import argparse
 
 from ..filemanagement import ImageFile
+from ..ui import notify
 
 
 logger = logging.getLogger(__name__)
 
 
-YUM_HELP = """Crop an image.
+YUM_HELP = """Expand an image
 
-Image will be cropped from the edges. 
+Image will be expanded at the edges with transparent background.
 
-Parameters
+Paremeters
 ----------
 path : str
+    With -i flag
     Absolute or relative path to the image.
-crop_args : str
+expand_args : str
+    With -e flag
     Format is either X,X,X,X or X,X,X or X,X or X where X is count of
-    pixels to crop from the edges, clockwise. For example, if you want
-    to make it narrower use something like 0,50,0,50 or just 0,50,0.
+    pixels to expand the image at its edges, clockwise. For example,
+    if you want to make it wider use something like 0,50,0,50 or just
+    0,50,0.
+    With -o flag
 output_path : str, optional
-    Absolute or relative path where to save cropped image."""
+    Absolute or relative path where to save expanded image."""
 
 
 def _parse_args(args):
     """Parse command line arguments and return"""
 
     # Set up args parser
-    parser = argparse.ArgumentParser(
-                        prog="Crop image",
-                        description="""This script crops image
-                        how??
-                        output file is output.<ext> if output arg is not
-                        specified.""",)
+    parser = argparse.ArgumentParser(prog="Expand image",)
     parser.add_argument("-i", "--input",
                         help="""input image to edit""",
                         required=True)
@@ -44,8 +44,8 @@ def _parse_args(args):
     # 0,1,2 is actually 0,1,2,1
     # 2 is actually 2,2,2,2
     # etc.
-    parser.add_argument("-c", "--crop",
-                        help="""crop parameters [description here]""",
+    parser.add_argument("-e", "--expand",
+                        help="""expand parameters""",
                         required=True)
     # Get all specified arguments
     if args is None:
@@ -63,11 +63,16 @@ def main(args=None) -> None:
 	# Read image
     image_file = ImageFile(args.input)
     logger.debug("Input image shape %s", image_file.image.shape)
-    # Crop image
-    image_file.crop(args.crop)
+    # Expand image
+    image_file.expand(args.expand)
     logger.debug("Output image shape %s", image_file.image.shape)
 	# Save image file
-    image_file.save(args.output)
+    result = image_file.save(args.output)
+    if isinstance(result, Exception):
+        notify(f"{result}", "err")
+    else:
+        notify(f"Saved as {image_file.get_name()}", "ok")
+
 
 
 if __name__ == "__main__":
