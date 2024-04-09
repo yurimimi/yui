@@ -9,7 +9,7 @@ from ..ui import notify
 logger = logging.getLogger(__name__)
 
 
-YUM_HELP = """Expand an image
+YUI_HELP = """Expand an image
 
 Image will be expanded at the edges with transparent background.
 

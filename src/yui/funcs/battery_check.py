@@ -7,8 +7,7 @@ from ..ui import notify
 logger = logging.getLogger(__name__)
 
 
-# Add such thing to each script in the utils directory
-YUM_HELP = """Check battery charge at the current time.
+YUI_HELP = """Check battery charge at the current time.
 
 If no arguments provided shows sum of all batteries available.
 

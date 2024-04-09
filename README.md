@@ -1,4 +1,4 @@
-Yum is a utility manager that provides the user with a CLI menu with various functions,
+Yui (your utility integrator) is a utility manager that provides the user with a CLI menu with various functions,
 from image edit to file management. You are very welcome to fork it and modify so that it
 becomes your utility manager!
 
@@ -9,13 +9,13 @@ I use [this awesome survey lib](https://github.com/Exahilosys/survey) for this a
 To install, run this
 
 ```bash
-python -m pip install git+https://github.com/yurimimi/yum.git@master
+python -m pip install git+https://github.com/yurimimi/yui.git@master
 ```
 
 To make it show up in your command line, just call
 
 ```bash
-python -m yum
+python -m yui
 ```
 
 # Utils

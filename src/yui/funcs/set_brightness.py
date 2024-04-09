@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-YUM_HELP = """Set display brightness.
+YUI_HELP = """Set display brightness.
 
 You can set it in range between 0 to 100 by specifying an abs value (0-100) or by a 
 relative value, for example -10 or +30. Uses xrandr. 

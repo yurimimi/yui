@@ -8,7 +8,7 @@ from ..filemanagement import ImageFile
 logger = logging.getLogger(__name__)
 
 
-YUM_HELP = """Crop an image.
+YUI_HELP = """Crop an image.
 
 Image will be cropped from the edges. 
 

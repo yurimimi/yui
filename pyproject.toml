@@ -3,7 +3,7 @@ requires = ['setuptools']
 build-backend = 'setuptools.build_meta'
 
 [project]
-name = "yum"
+name = "yui"
 version = "0.0.1"
 dependencies = [
   "survey",
@@ -16,6 +16,6 @@ authors = [
 ]
 
 [project.urls]
-Repository = "https://github.com/yurimimi/yum.git"
-Issues = "https://github.com/yurimimi/yum/issues"
+Repository = "https://github.com/yurimimi/yui.git"
+Issues = "https://github.com/yurimimi/yui/issues"
 

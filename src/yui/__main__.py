@@ -20,10 +20,10 @@ LOG_FORMAT_DATE = '%Y-%m-%d %I:%M:%S %p'
 
 def _init():
     user_home_dir = os.path.expanduser("~")
-    #user_config_dir = os.path.join(user_home_dir, ".config/yum")
+    #user_config_dir = os.path.join(user_home_dir, ".config/yui")
     #user_config = os.path.join(user_config_dir, "config.py")
-    user_share_dir = os.path.join(user_home_dir, ".local/share/yum")
-    log_file = os.path.join(user_share_dir, "yum.log")
+    user_share_dir = os.path.join(user_home_dir, ".local/share/yui")
+    log_file = os.path.join(user_share_dir, "yui.log")
 
     if not os.path.isfile(log_file):
         os.makedirs(user_share_dir, exist_ok=True)
@@ -58,9 +58,9 @@ def main() -> None:
     chosen_func = funcs_list[index]
     # Dynamically load the module
     func_module = importlib.import_module("." + funcs_dir_name + "." + chosen_func,
-                                          package="yum")
-    # Pring yum_help of chosen script
-    notify(func_module.YUM_HELP)
+                                          package="yui")
+    # Pring YUI_HELP of chosen script
+    notify(func_module.YUI_HELP)
 
     # Ask user to provide arguments for the function
     args = ask_input('args: ')

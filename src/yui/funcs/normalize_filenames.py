@@ -9,7 +9,7 @@ from ..ui import notify
 logger = logging.getLogger(__name__)
 
 
-YUM_HELP = """Normalize filenames in directory
+YUI_HELP = """Normalize filenames in directory
 
 If no arguments provided normalizes all files in the current directory.
 
