@@ -1,8 +1,14 @@
-"""A CLI tool that catalogues all my python scripts and utilities"""
+"""A CLI tool that catalogues utilities.
+
+Yum is a utility manager that provides the user with a CLI menu with various utilities,
+from image editors to file management systems. You are very welcome to fork it and
+modify so that it becomes your utility manager!
+"""
 import sys
 import os
 import logging
 import importlib
+import signal
 #import shutil
 
 from .ui import notify, ask_select, ask_input
@@ -45,6 +51,7 @@ def main() -> None:
     funcs_list = [func[:-3] for func in os.listdir(funcs_dir)
                   if func.endswith(".py") and not func.startswith("_")]
 
+    notify('Press Ctrl+C to quit.')
     # Ask user what function to use
     index = ask_select("Pick a function: ", options=funcs_list)
     # Get function name
@@ -57,6 +64,7 @@ def main() -> None:
 
     # Ask user to provide arguments for the function
     args = ask_input('args: ')
+
     # Call function with arguments specified
     func_module.main(args)
 
@@ -64,4 +72,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt as e:
+        print('\n')
+        notify("Exiting...")
+        sys.exit(0)

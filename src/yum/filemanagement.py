@@ -137,6 +137,8 @@ class File():
 
         new_filename = name.strip().replace(" ", "_")
         new_filename = re.sub(r"(?u)[^-\w.]", "", new_filename)
+        if new_filename in {"", ".", ".."}:
+            raise Exception(f"Could not derive file name from '{name}'")
 
         return self.rename(new_filename, force_rewrite)
 
@@ -228,11 +230,6 @@ class Directory(File):
         current directory (just spaces for now -3-)
         """
 
-        # v1
-        #FileManager.normalize_filenames(self.abspath, force_rewrite)
-
-        # v2
-        # For each file in dir rename if file's name contains bad symbols
         change_log: list[RenameResult] = []
 
         for filename in self.file_list:
