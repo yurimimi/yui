@@ -74,6 +74,5 @@ def main(args=None) -> None:
         notify(f"Saved as {image_file.get_name()}", "ok")
 
 
-
 if __name__ == "__main__":
     main()
