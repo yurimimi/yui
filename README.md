@@ -1,4 +1,4 @@
-Yui (your utility integrator) is a utility manager that provides the user with a CLI menu with various functions,
+Yui is a utility manager that provides the user with a CLI menu with various functions,
 from image edit to file management. You are very welcome to fork it and modify so that it
 becomes your utility manager!
 

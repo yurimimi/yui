@@ -40,7 +40,7 @@ class File():
 
         # Raise on invalid name or missing file
         if not os.path.exists(self.abspath):
-            raise OSError()
+            raise OSError(f"File {self.abspath} does not exist.")
 
     def get_abspath(self) -> str:
         """Get absolute path of this file"""
@@ -233,7 +233,7 @@ class Directory(File):
         change_log: list[RenameResult] = []
 
         for filename in self.file_list:
-            file = File(filename)
+            file = File(os.path.join(self.get_name(), filename))
 
             result = file.normalize_filename(force_rewrite=force_rewrite)
 
