@@ -15,6 +15,12 @@ python -m pip install git+https://github.com/yurimimi/yui.git@master
 To make it show up in your command line, just call
 
 ```bash
+yui
+```
+
+or
+
+```bash
 python -m yui
 ```
 

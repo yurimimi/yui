@@ -19,3 +19,5 @@ authors = [
 Repository = "https://github.com/yurimimi/yui.git"
 Issues = "https://github.com/yurimimi/yui/issues"
 
+[project.scripts]
+yui = "yui.core:execute"
