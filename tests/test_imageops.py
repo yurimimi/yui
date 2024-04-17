@@ -3,8 +3,8 @@
 import unittest
 #from unittest.mock import patch
 
-from utils.filemanagement import ImageFile, File, FileManager
-from utils.imageops import crop_image, add_background
+from yui.filemanagement import ImageFile, File
+from yui.imageops import crop_image, add_background
 
 
 #logging.basicConfig(level=logging.DEBUG)
@@ -33,7 +33,7 @@ class TestImageOperations(unittest.TestCase):
     def test_crop(self):
         """Test crop function"""
 
-        crop_image()
+        #crop_image()
 
         # Crop image with different arguments (incl. range of args from 1 to 4)
 

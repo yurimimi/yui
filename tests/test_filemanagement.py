@@ -5,7 +5,7 @@ import logging
 import unittest
 #from unittest.mock import patch
 
-from utils.filemanagement import ImageFile, File, FileManager
+from yui.filemanagement import ImageFile, File
 
 
 #logging.basicConfig(level=logging.DEBUG)
@@ -79,7 +79,7 @@ class TestFile(unittest.TestCase):
 
         Path(os.path.join(tests_data_dir, "renamed_file")).unlink(missing_ok=True)
 
-        if not FileManager.has_file(tests_data_dir, "test_file"):
+        if not os.path.isfile(os.path.join(tests_data_dir, "test_file")):
             Path(os.path.join(tests_data_dir, "test_file")).touch()
 
     @classmethod
@@ -154,7 +154,7 @@ class TestFile(unittest.TestCase):
         tests_data_dir = os.path.join(os.getcwd(), "tests/data")
 
         # Check if the file is in the directory
-        self.assertTrue(FileManager.has_file(tests_data_dir, "test_file"))
+        self.assertTrue(os.path.isfile(os.path.join(tests_data_dir, "test_file")))
         # Check virtual abs path of the file instance
         self.assertEqual(self.file.get_abspath(),
                          "/home/yuri/src/scripts/utils/tests/data/test_file")
@@ -165,7 +165,7 @@ class TestFile(unittest.TestCase):
         self.assertEqual(self.file.get_abspath(),
                          "/home/yuri/src/scripts/utils/tests/data/renamed_file")
         # Check if file has been renamed in the directory
-        self.assertTrue(FileManager.has_file(tests_data_dir, "renamed_file"))
+        self.assertTrue(os.path.isfile(os.path.join(tests_data_dir, "renamed_file")))
 
 
 class TestImageFile(unittest.TestCase):

@@ -24,6 +24,12 @@ or
 python -m yui
 ```
 
+You can also call a function by it's name as an argument
+
+```bash
+yui <function>
+```
+
 # Utils
 
 - File management

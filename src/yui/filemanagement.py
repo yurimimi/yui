@@ -233,7 +233,7 @@ class Directory(File):
         change_log: list[RenameResult] = []
 
         for filename in self.file_list:
-            file = File(os.path.join(self.get_name(), filename))
+            file = File(os.path.join(self.get_abspath(), filename))
 
             result = file.normalize_filename(force_rewrite=force_rewrite)
 
