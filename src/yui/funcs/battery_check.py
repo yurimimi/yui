@@ -51,13 +51,17 @@ def battery_check(battery_num: int | None=None) -> None:
 
     logger.debug("charges of batts %s", charges)
 
-    sum_of_charges = sum(charges) / 2.
+    # stupid thing assuming there's only 2 batteries
+    sum_of_charges = sum(charges) / len(charges)
 
     logger.debug("sum of charges %s%%", sum_of_charges)
     if battery_num is None:
         notify(f"{sum_of_charges}% ({len(charges)} batteries)")
     else:
-        notify(f"Battery {battery_num} charge: {charges[battery_num]}%")
+        if battery_num > len(charges):
+            notify('error', f"No battery {battery_num}, max number is {len(charges)}")
+        else:
+            notify(f"Battery {battery_num} charge: {charges[battery_num]}%")
 
 
 def main(args=None) -> None:

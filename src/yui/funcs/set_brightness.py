@@ -2,7 +2,7 @@
 import logging
 from typing import TypeVar
 
-from ..ui import proceed, notify
+from ..ui import proceed, notify, ask_input
 from ..xrandr import br
 
 
@@ -33,6 +33,8 @@ def _pass_filter(val: T, min_pass: T, max_pass: T) -> T:
 
 def set_brightness(brt_level: int | str=None) -> None:
     """Set display brightness level from 10 to 100. Uses xrandr."""
+
+    display = ask_input("Enter the display")
 
     # Flag that indicates either the value is relative (in percents) or absolute (from 0 to 100)
     brt_is_rel = False
@@ -84,7 +86,7 @@ def set_brightness(brt_level: int | str=None) -> None:
             return
 
         # Set brightness to specified value
-        br.xrandr_set_brightness(brt_level)
+        br.xrandr_set_brightness(brt_level, display)
 
         logger.info("Brightness level set to %s", brt_level)
         notify(f"Brightness level set to {brt_level}", msg_type="ok")
