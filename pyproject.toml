@@ -9,6 +9,7 @@ dependencies = [
   "survey",
   "numpy",
   "scikit-image",
+  "filemanagement @ git+https://github.com/yurimimi/filemanagement",
 ]
 readme = "README.md"
 keywords = ["cli", "utility", "menu"]

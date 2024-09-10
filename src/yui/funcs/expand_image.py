@@ -1,8 +1,8 @@
 """Expand image with transparent background (for now only transparent)."""
 import logging
 import argparse
+from filemanagement.core import ImageFile
 
-from ..filemanagement import ImageFile
 from ..ui import notify
 
 

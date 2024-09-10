@@ -5,8 +5,7 @@ Adds background layer of specified color to image
 """
 import logging
 import argparse
-
-from .filemanagement import ImageFile
+from filemanagement.core import ImageFile
 
 
 logger = logging.getLogger(__name__)

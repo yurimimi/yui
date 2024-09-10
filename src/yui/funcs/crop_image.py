@@ -1,8 +1,7 @@
 """Crop an image."""
 import logging
 import argparse
-
-from ..filemanagement import ImageFile
+from filemanagement.core import ImageFile
 
 
 logger = logging.getLogger(__name__)
@@ -15,8 +14,10 @@ Image will be cropped from the edges.
 Parameters
 ----------
 path : str
+    With -i flag
     Absolute or relative path to the image.
 crop_args : str
+    With -c flag
     Format is either X,X,X,X or X,X,X or X,X or X where X is count of
     pixels to crop from the edges, clockwise. For example, if you want
     to make it narrower use something like 0,50,0,50 or just 0,50,0.
@@ -36,9 +37,11 @@ def _parse_args(args):
                         specified.""",)
     parser.add_argument("-i", "--input",
                         help="""input image to edit""",
+                        type=str,
                         required=True)
     parser.add_argument("-o", "--output",
                         help="""output image location (optional)""",
+                        type=str,
                         required=False)
     # Make it like css think where 0,1 is actually 0,1,0,1
     # 0,1,2 is actually 0,1,2,1
@@ -46,6 +49,7 @@ def _parse_args(args):
     # etc.
     parser.add_argument("-c", "--crop",
                         help="""crop parameters [description here]""",
+                        type=str,
                         required=True)
     # Get all specified arguments
     if args is None:

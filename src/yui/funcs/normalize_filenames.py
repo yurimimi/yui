@@ -1,8 +1,8 @@
 """Normalize filenames in directory"""
 import argparse
 import logging
+from filemanagement.core import Directory
 
-from ..filemanagement import Directory
 from ..ui import notify
 
 
