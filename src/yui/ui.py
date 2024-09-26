@@ -24,16 +24,16 @@ def proceed(message: str, attempt_num=0) -> bool:
 
     printers.info(message)
 
-    # Give them a 3 attempts
+    # Give them 3 attempts
     if attempt_num == 3:
         return False
 
     answer = input("Proceed anyway? Y/n: ")
     result = None
 
-    if answer in ("y", "Y", "yes", "Yes"):
+    if answer in ("y", "Y", "yes", "Yes", "YES"):
         result = True
-    elif answer in ("n", "N", "no", "No"):
+    elif answer in ("n", "N", "no", "No", "NO"):
         result = False
 
     if result is None:

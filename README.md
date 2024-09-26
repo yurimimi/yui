@@ -93,3 +93,7 @@ Please don't hesitate to add stuff and fix grammatical and other mistakes in the
   - it has a nice CLI
   - it keeps all the presets in a config file that the user could upload somewhere like GitHub to share (locally kept at .config)
 - could I finally implement the .gitignore file generator..?
+
+## Nix related stuff
+
+- create nix venv files generator for kinds of projects
