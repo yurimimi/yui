@@ -75,25 +75,3 @@ or +5.
 
 Please don't hesitate to add stuff and fix grammatical and other mistakes in the text
 (comments, docs, etc.) because I'm just learning English. It'll help me a lot. :)
-
-# Todo
-
-## general
-
-- categorise utils
-- select multiple utils to run
-  - specify order of exectution
-- better navigation
-
-## git related stuff
-
-- add git config file generator with presets and/or custom configuration
-  - custom config managed by yui, somewhat `git config` does
-  - but yui can keep a number of configs at the time, so you can ask it to generate the file for a particular repo (directory)
-  - it has a nice CLI
-  - it keeps all the presets in a config file that the user could upload somewhere like GitHub to share (locally kept at .config)
-- could I finally implement the .gitignore file generator..?
-
-## Nix related stuff
-
-- create nix venv files generator for kinds of projects

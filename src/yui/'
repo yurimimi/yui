@@ -31,9 +31,8 @@ def _pass_filter(val: T, min_pass: T, max_pass: T) -> T:
         raise e
 
 
-def ask_monitor() -> str | list[str]:
-    """"""
-
+def ask_monitor():
+    # TODO I also have to give a option to change brightness of all monitors.
     # Will it be a problem with relative setting?
     list_of_monitors = xrandr.get_list_of_monitors()
     if not list_of_monitors:
@@ -43,11 +42,10 @@ def ask_monitor() -> str | list[str]:
     elif len(list_of_monitors) == 1:
         return list_of_monitors[0]
 
-    # Add an option to change for every monitor.
+    # Add an option to change for every each monitor.
     list_of_monitors.append("Set to all")
-
-    # Ask the user.
     message = "Please select a monitor to change the brightness of. "
+    # Save the result. 
     display_index = ask_select(message, list_of_monitors)
     display = list_of_monitors[display_index] 
 
@@ -64,12 +62,13 @@ def ask_monitor() -> str | list[str]:
 def set_brightness(brt_level: int | str=None) -> None:
     """Set display brightness level from 10 to 100. Uses xrandr."""
 
+    display: str | list[str] = ask_monitor()
+
     # Flag that indicates either the value is relative (+ or - to the current
     # value) or absolute (from 0 to 100).
-    brt_is_rel: bool = False
-    rel_sign: str | int | None = None
+    brt_is_rel = False
+    rel_sign: str | int 
 
-    # VALIDATION
     # If arg was not provided.
     if brt_level is None:
         notify("Please set a value in range from 0 to 100.", msg_type="err")
@@ -98,29 +97,21 @@ def set_brightness(brt_level: int | str=None) -> None:
         notify("Please set a value in range from 0 to 100.", msg_type="err")
         logger.warning("Please set a value in range from 0 to 100.")
         return
-    # VALIDATION END
-
-    # Which monitor or monitors to config.
-    display: str | list[str] = ask_monitor()
 
     # Transform into range of 0 to 1.
     brt_level /= 100
 
     if isinstance(display, str):
-        _set_brightness(display, brt_level, brt_is_rel, rel_sign)
+        _set_brightness(display, brt_level, brt_is_rel)
     elif isinstance(display, list):
         for d in display:
-            _set_brightness(d, brt_level, brt_is_rel, rel_sign)
+            _set_brightness(d, brt_level, brt_is_rel)
     else:
-        logger.warn("Invalid value. But how?")
+        logger.warn("Invalid value")
         return 
 
 
-def _set_brightness(display, brt_level, brt_is_rel=False, rel_sign=None):
-    """Set display brightness level from 10 to 100. Uses xrandr.
-    Finally.
-    """
-
+def _set_brightness(display, brt_level, brt_is_rel):
     # If value was provided with a sign
     if brt_is_rel:
         # Calculate what brightness level we get here after application of the 
@@ -146,7 +137,7 @@ def _set_brightness(display, brt_level, brt_is_rel=False, rel_sign=None):
     xrandr.xrandr_set_brightness(brt_level, display)
 
     logger.info("Brightness level set to %s", brt_level)
-    notify(f"Brightness level set to {brt_level} for {display}.", msg_type="ok")
+    notify(f"Brightness level set to {brt_level}", msg_type="ok")
 
 
 def main(args=None) -> None:
