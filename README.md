@@ -24,7 +24,7 @@ or
 python -m yui
 ```
 
-You can also call a function by it's name as an argument
+You can also call a function by its name as an argument
 
 ```bash
 yui <function>
