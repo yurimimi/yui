@@ -1,6 +1,6 @@
-Yui is a utility manager that provides the user with a CLI menu with various functions,
-from image edit to file management. You are very welcome to fork it and modify so that it
-becomes your utility manager!
+Yui is a utility manager that provides the user with a CLI menu with a variety of functions,
+from image editing to file management. You are very welcome to fork and modify it into your
+utility manager!
 
 I use [this awesome survey lib](https://github.com/Exahilosys/survey) for this app.
 
@@ -24,13 +24,13 @@ or
 python -m yui
 ```
 
-You can also call a function by its name as an argument
+You can also call a function by its name as an argument.
 
 ```bash
 yui <function>
 ```
 
-# Utils
+# Functions
 
 **File management**
 
@@ -51,19 +51,19 @@ The parameters order is like CSS's padding and margin.
 
 - Expand image
 
-`expand_image` works like `crop_image` but inversely: it expands the image at the edges
+`expand_image` works like `crop_image` but inversely: it expands the image at the edges,
 filling the area with transparency.
 
 - Add background (WIP)
 
 Does not work yet.
 
-**System related**
+**System-related**
 
 - Check battery(-ies)
 
 `battery_check` shows the percentage of the current battery charge. It takes either one
-arg - the battery number, or shows the summary charge if no argument was provided.
+arg—the battery number—or shows the summary charge if no argument was provided.
 
 - Set brightness
 
@@ -76,9 +76,9 @@ or +5.
 - Set wallpaper
 
 `set_wallpaper` replaces the feh --bg (background) command in .xinitrc with a new one with 
-set wallpaper image.
+a set wallpaper image.
 
-# Contrib
+# Contribution
 
 Please don't hesitate to add stuff and fix grammatical and other mistakes in the text
 (comments, docs, etc.) because I'm just learning English. It'll help me a lot. :)
