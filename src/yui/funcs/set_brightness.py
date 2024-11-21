@@ -17,7 +17,7 @@ relative value, for example -10 or +30. Uses xrandr.
 
 Parameters
 ----------
-brt_level : int | str, optional
+brt_level : int | str
     Absolute or relative value of brightness"""
 
 
