@@ -31,6 +31,9 @@ def set_wallpaper(wallpaper_image_path: str) -> None:
     #    notify("Please, specify path to the wallpaper.")
     #    return 0
 
+    if wallpaper_image_path == '':
+        notify(f"Please enter a valid file path.")
+        return 0
     if not os.path.isfile(wallpaper_image_path):
         notify(f"File '{wallpaper_image_path}' does not exist.")
         return 0

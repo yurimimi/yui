@@ -1,6 +1,6 @@
-Yui is a utility manager that provides the user with a CLI menu with a variety of functions,
-from image editing to file management. You are very welcome to fork and modify it into your
-utility manager!
+Yui is a utility manager that provides the user with a CLI menu with a variety 
+of functions, from image editing to file management. You are very welcome to 
+fork and modify it into your utility manager!
 
 I use [this awesome survey lib](https://github.com/Exahilosys/survey) for this app.
 
@@ -15,19 +15,25 @@ python -m pip install git+https://github.com/yurimimi/yui.git@master
 To make it show up in your command line, just call
 
 ```bash
-yui
+yui # or python -m yui
 ```
 
-or
-
-```bash
-python -m yui
-```
-
-You can also call a function by its name as an argument.
+You can also call a function immediately by typing its name as argument.
 
 ```bash
 yui <function>
+```
+
+## Development
+
+To use this package in editable mode, which means that it will be called from 
+the project directory each time Yui is executed, taking into account the 
+changes you made there, clone this repository first, and then install it using 
+pip with the -e option:
+
+```bash
+git clone https://github.com/yurimimi/yui.git ~/src/yui
+pip install -e ~/src/yui
 ```
 
 # Functions
@@ -44,15 +50,19 @@ Does not work yet.
 
 **Image operations**
 
+This functions catalog is an attempt to adapt the [skimage](https://github.com/scikit-image/scikit-image/tree/main/skimage) 
+library as a lightweight set of image processing utilities for use from the 
+command line.
+
 - Crop image
 
-`crop_image` crops the image from its edges based on the specified range of pixels.
-The parameters order is like CSS's padding and margin.
+`crop_image` crops the image from its edges based on the specified range of 
+pixels. The parameters order is like CSS's padding and margin.
 
 - Expand image
 
-`expand_image` works like `crop_image` but inversely: it expands the image at the edges,
-filling the area with transparency.
+`expand_image` works like `crop_image` but inversely: it expands the image at 
+the edges, filling the area with transparency.
 
 - Add background (WIP)
 
@@ -78,7 +88,6 @@ or +5.
 `set_wallpaper` replaces the feh --bg (background) command in .xinitrc with a new one with 
 a set wallpaper image.
 
-# Contribution
+# Todo
 
-Please don't hesitate to add stuff and fix grammatical and other mistakes in the text
-(comments, docs, etc.) because I'm just learning English. It'll help me a lot. :)
+For to do list see ./todo.md file.
