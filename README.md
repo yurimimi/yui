@@ -71,6 +71,13 @@ arg - the battery number, or shows the summary charge if no argument was provide
 here. The argument can be an absolute value, e.g., 100 or 75, or a relative one like -15
 or +5.
 
+**Misc**
+
+- Set wallpaper
+
+`set_wallpaper` replaces the feh --bg (background) command in .xinitrc with a new one with 
+set wallpaper image.
+
 # Contrib
 
 Please don't hesitate to add stuff and fix grammatical and other mistakes in the text
