@@ -56,7 +56,7 @@ class CommandManager():
         funcs_list = [func[:-3] for func in os.listdir(funcs_dir)
                       if func.endswith(".py") and not func.startswith("_")]
 
-        notify('Press Ctrl+C to quit.')
+        notify('Press Ctrl+C to quit yui.')
 
         if len(self.argv) < 2:
             # Ask user what function to use
